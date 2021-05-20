@@ -40,11 +40,12 @@ public class TimeInIreland {
 
     /**
      * Creates a String from a 24-hour clock. 0 returns 12am, 1 returns 1am, 16 returns 4pm, etc.
-     *
+     * @param hour the hour you wish to put in string form.
      * */
     @NotNull
     public static String getTimeString(int hour) {
         if (hour == 0) return "12am";
+        if (hour == 12) return "12pm";
         return (hour < 12) ? hour + "am" : (hour-12) + "pm";
     }
 
