@@ -17,15 +17,20 @@ public class TimeInIreland {
     private static final String IMAGE_CAPTION = "It's currently %s in Ireland.";
 
     public static void main(String[] args) throws IGLoginException {
+
+        if (args == null || args.length < 2) {
+            System.out.println("Please provide the username and password as command line arguments, space-separated.");
+            return;
+        }
+
         // What hour it is in Dublin (Ireland)
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Dublin"));
-
 
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
         IGClient client = IGClient.builder()
-                .username(System.getenv("instagram-username"))
-                .password(System.getenv("instagram-password"))
+                .username(args[0])
+                .password(args[1])
                 .login();
 
         client.actions().timeline()
