@@ -52,13 +52,12 @@ public class TimeInIreland {
     /**
      * Creates a temporary java.io.File from a JAR Resource. It is deleted after the JVM exits.
      * @param resourcePath The path within the JAR to the requested resource.
+     * @return a temporary File containing the requested JAR Resource.
      * */
     @Nullable
     public static File getResourceAsFile(String resourcePath) {
-        try {
-            InputStream in = TimeInIreland.class.getResourceAsStream(resourcePath);
+        try (InputStream in = TimeInIreland.class.getResourceAsStream(resourcePath)) {
             if (in == null) {
-                System.out.println("a");
                 return null;
             }
 
